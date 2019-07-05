@@ -16,6 +16,8 @@ export class HeaderComponent {
         if (!this._authService.token) {
             return '';
         };
+
+        const isAdmin = this._authService.userIsAdmin;
         
         return `
             <nav class="navbar navbar-light bg-light">
@@ -32,7 +34,15 @@ export class HeaderComponent {
                     </li>
                     <li class="nav-item ml-3">
                         <a class="nav-link" href="/#/winners">Winners</a>
-                    </li>  
+                    </li>
+                    ${isAdmin ?
+                        `<li class="nav-item ml-3">
+                            <a class="nav-link" href="/#/admin-panel">Admine Panel</a>
+                        </li>`
+                        :
+                        ''
+                    }
+                    
                 </ul>
                 <button class="btn btn-primary logout-btn">Logout</button>
             </nav>

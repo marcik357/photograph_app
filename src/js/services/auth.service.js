@@ -12,6 +12,10 @@ export class AuthService {
     return localStorage.getItem('sn_user_id');
   };
 
+  get userIsAdmin() {
+    return localStorage.getItem('sn_user_type') === 'admin';
+  };
+
   login(email, password) {
     const http = new Http();
 
@@ -35,6 +39,7 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       localStorage.removeItem('sn_user_id');
       localStorage.removeItem('sn_user_token');
+      localStorage.removeItem('sn_user_type', this._user.type);
 
       resolve();
     });

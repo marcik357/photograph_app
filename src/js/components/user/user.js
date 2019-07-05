@@ -15,6 +15,7 @@ export class UserComponent {
     async beforeRender() {
         this._activeUserId = this._activeRoute.parseRequestUrl().id;
         this._user = await this._userService.getUser(this._activeUserId);
+        localStorage.setItem('sn_user_type', this._user.type);
     };
 
     render() {
